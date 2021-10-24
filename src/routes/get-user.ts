@@ -1,7 +1,12 @@
 import { getClient, getAuth, getUser } from '../soap';
 import { Handler } from '@netlify/functions'
+import { isPasswordOk } from '../auth';
 
 export const handler: Handler = async (event, context) => {
+  if (!isPasswordOk(event)) {
+    return {statusCode: 401, body: 'Unauthorized'}
+  }
+
   const userId = event.queryStringParameters?.id
 
   if (!userId) {
