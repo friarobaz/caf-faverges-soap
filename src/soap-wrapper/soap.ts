@@ -48,12 +48,13 @@ export const getUsers = async (client: any, auth: any, clubId: any): Promise<Use
 
 const getValue = (input: {$value: string}): string => input.$value
 
-export const getUser = async (client: any, auth: any, userId: any): Promise<User> => {
+export const getUser = async (client: any, auth: any, userId: string): Promise<User> => {
   return new Promise((resolve, reject) => {
     client.extractionAdherent(
       { connect: auth, id: userId },
       (err: any, result: any) => {
         if (err) {
+          console.log('get user error', err);
           return reject(err);
         }
         const user = result.extractionAdherentReturn
