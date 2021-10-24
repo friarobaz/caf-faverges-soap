@@ -4,7 +4,8 @@
   "description": "",
   "main": "api.ts",
   "scripts": {
-    "dev": "env-cmd nodemon src/api.ts"
+    "dev": "env-cmd nodemon src/api.ts",
+    "build": "tsc"
   },
   "author": "Jules Marchand",
   "license": "Beerware",
