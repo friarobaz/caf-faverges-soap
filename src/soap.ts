@@ -1,6 +1,8 @@
 import * as soap from "soap";
 
-export const getClient = async (): Promise<any> => {
+interface Client extends soap.Client {}
+
+export const getClient = async (): Promise<Client> => {
   var url = "https://extranet-clubalpin.com/app/soap/extranet_pro.wsdl";
   return new Promise((resolve, reject) => {
     soap.createClient(url, (err, client) => {
@@ -12,9 +14,13 @@ export const getClient = async (): Promise<any> => {
   });
 };
 
-export const getAuth = async (client: any): Promise<any> => {
+type Auth = {
+  utilisateur: string
+  motdepasse: string
+}
+export const getAuth = async (client: Client): Promise<Auth> => {
   return new Promise((resolve, reject) => {
-    client.auth(null, (err: any, result: any) => {
+    client.auth(null, (err: unknown, result: any) => {
       if (err) {
         return reject(err);
       }
@@ -32,7 +38,7 @@ type User = {
   lastname: string
   firstname: string
 }
-export const getUsers = async (client: any, auth: any, clubId: any): Promise<User[]> => {
+export const getUsers = async (client: Client, auth: Auth, clubId: string): Promise<User[]> => {
   return new Promise((resolve, reject) => {
     client.extractionAdherents(
       { connect: auth, idclub: clubId },
@@ -48,7 +54,7 @@ export const getUsers = async (client: any, auth: any, clubId: any): Promise<Use
 
 const getValue = (input: {$value: string}): string => input.$value
 
-export const getUser = async (client: any, auth: any, userId: string): Promise<User> => {
+export const getUser = async (client: Client, auth: Auth, userId: string): Promise<User> => {
   return new Promise((resolve, reject) => {
     client.extractionAdherent(
       { connect: auth, id: userId },

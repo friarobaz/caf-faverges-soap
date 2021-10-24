@@ -1,4 +1,4 @@
-import { getClient, getAuth, getUser } from './soap';
+import { getClient, getAuth, getUser } from '../soap';
 import { Handler } from '@netlify/functions'
 
 export const handler: Handler = async (event, context) => {
