@@ -1,0 +1,532 @@
+<h1 style="
+        padding: 5px;
+        border: 1px solid #000;
+        border-radius: 5px;
+        margin: 5px 100px;
+        background: #ddd;
+        color: #333;
+    ">Fonctions du webservice</h1><pre style="
+        padding: 5px;
+        border: 1px solid #000;
+        border-radius: 5px;
+        margin: 5px 100px;
+        background: #ddd;
+        color: #333;
+    ">Array
+(
+    [0] => ffcam_connexion auth()
+    [1] => ffcam_adherent_verifie verifierUnAdherent(ffcam_connexion $connect, string $id)
+    [2] => ffcam_club extractionClub(ffcam_connexion $connect, string $idclub)
+    [3] => ffcam_clubs extractionClubs(ffcam_connexion $connect)
+    [4] => ffcam_adherent extractionAdherent(ffcam_connexion $connect, string $id)
+    [5] => ffcam_adherents extractionAdherents(ffcam_connexion $connect, string $idclub)
+    [6] => ffcam_sorties extractionSortiesClub(ffcam_connexion $connect, string $idclub)
+    [7] => ffcam_structures extractionCDs(ffcam_connexion $connect)
+    [8] => ffcam_structures extractionCRs(ffcam_connexion $connect)
+    [9] => ffcam_structure extractionComite(ffcam_connexion $connect, string $identifiant)
+    [10] => ffcam_refuge_medias extractionRefugeMedias(ffcam_connexion $connect, string $identifiant)
+    [11] => ffcam_refuges extractionRefuges(ffcam_connexion $connect)
+    [12] => ffcam_refuge extractionRefuge(ffcam_connexion $connect, string $identifiant)
+    [13] => ffcam_refuge_referentiel extractionRefugeReferentiel(ffcam_connexion $connect)
+    [14] => ffcam_export_stage extractionStages(ffcam_connexion $connect)
+    [15] => UNKNOWN extractionStagesImages(ffcam_connexion $connect)
+    [16] => UNKNOWN extractionStagesCursus(ffcam_connexion $connect)
+    [17] => UNKNOWN extractionStagesInscriptions(ffcam_connexion $connect)
+    [18] => ffcam_export_stage_file extractionStagesCahierDesStages(ffcam_connexion $connect)
+)
+</pre><h1 style="
+        padding: 5px;
+        border: 1px solid #000;
+        border-radius: 5px;
+        margin: 5px 100px;
+        background: #ddd;
+        color: #333;
+    ">Types de données du webservice</h1><pre style="
+        padding: 5px;
+        border: 1px solid #000;
+        border-radius: 5px;
+        margin: 5px 100px;
+        background: #ddd;
+        color: #333;
+    ">Array
+(
+    [0] => struct ffcam_connexion {
+ string utilisateur;
+ string motdepasse;
+}
+    [1] => struct ffcam_adherent_verifie {
+ int existe;
+ string id;
+ string nom;
+ string prenom;
+ string inscription;
+ int assurance_personne;
+}
+    [2] => struct ffcam_club {
+ string hash;
+ string idclub;
+ string nom;
+ string nomcomp;
+ string adresse_siege_1;
+ string adresse_siege_2;
+ string adresse_siege_3;
+ string adresse_siege_code_postal;
+ string adresse_siege_ville;
+ string adresse_siege_pays;
+ string adresse_courrier_1;
+ string adresse_courrier_2;
+ string adresse_courrier_3;
+ string adresse_courrier_code_postal;
+ string adresse_courrier_ville;
+ string adresse_courrier_pays;
+ string lien_adhesion_en_ligne;
+ string email;
+ string permanence;
+ string tel_siege;
+ string site_internet;
+ string fax;
+ ffcam_adherentArray cadres;
+ int ecole_escalade;
+ int ecole_aventure;
+ int ecole_ski;
+ string departement;
+ string region;
+ ffcam_activite_proposeeArray activites_proposees;
+ string gps_latitude;
+ string gps_longitude;
+}
+    [3] => struct ffcam_adherent {
+ string id;
+ string idclub;
+ string adherent;
+ string cle_publique;
+ string categorie;
+ string chef_famille;
+ string date_naissance;
+ string date_inscription;
+ string qualite;
+ string nom;
+ string prenom;
+ string adresse1;
+ string adresse2;
+ string adresse3;
+ string adresse4;
+ string codepostal;
+ string ville;
+ int inscrit_par_internet;
+ int assurance_ap;
+ string date_assurance_ap;
+ int assurance_monde;
+ string date_assurance_monde;
+ int assurance_paralpinisme;
+ string date_assurance_paralpinisme;
+ int assurance_acr;
+ string date_assurance_acr;
+ string accident_qui;
+ string accident_tel;
+ string tel;
+ string portable;
+ string email;
+ string date_radiation;
+ string motif_radiation;
+ ffcam_diplomeArray diplomes;
+ ffcam_fonctionArray fonctions;
+ ffcam_adherent_act_clubArray activites_club;
+ ffcam_adherent_activite_pratiqueeArray activites_pratiquees;
+}
+    [4] => struct ffcam_diplome {
+ string diplome;
+ string libelle;
+ string obtention;
+}
+    [5] => struct ffcam_fonction {
+ string code;
+ string style;
+ string libelle;
+ string libelle_libre;
+}
+    [6] => struct ffcam_adherent_act_club {
+ string code;
+ string date_inscription;
+ string montant;
+}
+    [7] => struct ffcam_adherent_activite_pratiquee {
+ string activite;
+ string description;
+}
+    [8] => struct ffcam_activite_proposee {
+ int id;
+ string activite;
+}
+    [9] => struct ffcam_clubs {
+ stringArray collection;
+}
+    [10] => string stringArray[]
+    [11] => struct ffcam_adherents {
+ ffcam_adherentArray collection;
+}
+    [12] => struct ffcam_sorties {
+ ffcam_sortieArray sorties;
+}
+    [13] => struct ffcam_sortie {
+ string id;
+ string intitule;
+ string debut;
+ string fin;
+ string lieu;
+ string description;
+ string description_materiel;
+ string description_niveau;
+ string capacite;
+ string statut;
+ string lien_inscription;
+}
+    [14] => struct ffcam_structures {
+ stringArray collection;
+}
+    [15] => struct ffcam_structure {
+ string hash;
+ string identifiant;
+ string nom;
+ string departement;
+ string region;
+ string adresse_siege_1;
+ string adresse_siege_2;
+ string adresse_siege_3;
+ string adresse_siege_code_postal;
+ string adresse_siege_ville;
+ string adresse_siege_pays;
+ string adresse_courrier_1;
+ string adresse_courrier_2;
+ string adresse_courrier_3;
+ string adresse_courrier_code_postal;
+ string adresse_courrier_ville;
+ string adresse_courrier_pays;
+ string email;
+ string tel_siege;
+ string site_internet;
+ ffcam_adherentArray cadres;
+ string gps_latitude;
+ string gps_longitude;
+}
+    [16] => struct ffcam_refuge_medias {
+ ffcam_refuge_mediaArray collection;
+}
+    [17] => struct ffcam_refuge_media {
+ int id;
+ int image_principale;
+ int image_autre;
+ int autre;
+ string nom;
+ string copyright;
+ string contenu;
+}
+    [18] => struct ffcam_refuges {
+ stringArray collection;
+}
+    [19] => struct ffcam_refuge {
+ string hash;
+ string identifiant;
+ string code_console_xsalto;
+ string sitra;
+ string nom;
+ string nom_public;
+ string idclub;
+ string departement;
+ string carteign;
+ int altitude;
+ string gps_latitude;
+ string gps_longitude;
+ string gps_utm;
+ int grand_massif;
+ int massif;
+ int sous_massif;
+ int refuge_hiver;
+ int nb_places_hiver;
+ int nb_places;
+ string type_batiment;
+ int type_batiment_id;
+ string website;
+ string tel_reservation;
+ string email_reservation;
+ int salle_hors_sac;
+ int wc_interieur;
+ int access_mobilite;
+ int agree_scolaires;
+ int nb_places_scolaires;
+ int agree_ddjs;
+ int nb_places_ddjs;
+ string adresse_1;
+ string adresse_2;
+ string adresse_3;
+ string adresse_code_postal;
+ string adresse_ville;
+ string pays;
+ ffcam_refuge_mlArray multilingue;
+ ffcam_refuge_parkingArray parkings;
+ ffcam_refuge_gardienArray gardiens;
+ ffcam_ref_activiteArray activites;
+ string widget;
+ int com_pg_nbcouchage;
+ int com_pg_nbdortoir;
+ int com_pg_couette;
+ int com_pg_couverture;
+ int com_pg_locationdrap;
+ string com_pg_infocomp;
+ int com_pg_lavabo;
+ int com_pg_douche;
+ int com_pg_eaucourante;
+ int com_pg_vaisselle;
+ int com_pg_equipcuisson;
+ int com_pg_chauffage;
+ int com_pg_wifi;
+ int com_pg_sallereunion;
+ int com_pg_restauration;
+ int com_pg_priseelectrique;
+ int com_pg_animaux;
+ int com_png_nbcouchage;
+ int com_png_nbdortoir;
+ int com_png_couette;
+ int com_png_couverture;
+ int com_png_eaucourante;
+ int com_png_vaisselle;
+ int com_png_equipcuisson;
+ int com_png_chauffage;
+ int com_png_animaux;
+}
+    [20] => struct ffcam_refuge_ml {
+ string iso;
+ string descriptif;
+ string descriptif_long;
+ string descriptif_ouverture;
+ string mobilite_commentaire;
+ string situation_reglementaire;
+ string equipement_refuge_hiver_commentaire;
+ string descriptif_couchage;
+ string commentaire_acces;
+ string commentaire_activite;
+}
+    [21] => struct ffcam_refuge_parking {
+ int id;
+ int parking_id;
+ string nom;
+ int route_ete;
+ int route_hiver;
+ int transport_commun;
+ string gps_latitude;
+ string gps_longitude;
+ string gps_utm;
+ int altitude;
+ string temps_vers_refuge_ete;
+ string temps_vers_refuge_hiver;
+ string temps_depuis_refuge_pedestre;
+ string temps_depuis_refuge_ski;
+ float distance_ete;
+ int denivele_positif_ete;
+ int denivele_negatif_ete;
+ float distance_hiver;
+ int denivele_positif_hiver;
+ int denivele_negatif_hiver;
+ ffcam_refuge_parking_mlArray multilingue;
+}
+    [22] => struct ffcam_refuge_parking_ml {
+ string iso;
+ string description_acces_routier;
+ string description_acces_transport_commun;
+ string description_acces_ete_parking_vers_refuge;
+ string description_acces_ete_refuge_vers_parking;
+ string description_acces_hiver_parking_vers_refuge;
+ string description_acces_hiver_refuge_vers_parking;
+ int difficulte_acces_ete_id;
+ string difficulte_acces_ete;
+ int difficulte_acces_hiver_id;
+ string difficulte_acces_hiver;
+ int difficulte_acces_general_id;
+ string difficulte_acces_general;
+}
+    [23] => struct ffcam_refuge_gardien {
+ int id;
+ string qualite;
+ string nom;
+ string prenom;
+ string adresse_1;
+ string adresse_2;
+ string adresse_3;
+ string adresse_cp;
+ string adresse_ville;
+ int enposte_ete;
+ int enposte_hiver;
+ int titulaire;
+ string telephone;
+ string portable;
+ string email;
+ string website;
+}
+    [24] => struct ffcam_ref_activite {
+ int id;
+ string activite;
+}
+    [25] => struct ffcam_refuge_referentiel {
+ ffcam_ref_langueArray langues;
+ ffcam_ref_activiteArray activites;
+ ffcam_ref_grand_massifArray grand_massifs;
+ ffcam_ref_massifArray massifs;
+ ffcam_ref_sous_massifArray sous_massifs;
+ ffcam_ref_type_batimentArray type_batiments;
+ ffcam_ref_difficulte_accesArray difficultes_ete;
+ ffcam_ref_difficulte_accesArray difficultes_hiver;
+ ffcam_ref_difficulte_accesArray difficultes_general;
+}
+    [26] => struct ffcam_ref_langue {
+ string iso;
+ string libelle;
+}
+    [27] => struct ffcam_ref_grand_massif {
+ int id;
+ string grand_massif;
+}
+    [28] => struct ffcam_ref_massif {
+ int id;
+ int grand_massif_id;
+ string massif;
+}
+    [29] => struct ffcam_ref_sous_massif {
+ int id;
+ int massif_id;
+ string sous_massif;
+}
+    [30] => struct ffcam_ref_type_batiment {
+ int id;
+ string type;
+}
+    [31] => struct ffcam_ref_difficulte_acces {
+ int id;
+ string difficulte;
+ ffcam_ref_difficulte_acces_mlArray multilingue;
+}
+    [32] => struct ffcam_ref_difficulte_acces_ml {
+ string iso;
+ string traduction;
+}
+    [33] => struct ffcam_export_stage {
+ ffcam_export_stage_formationArray formations;
+ ffcam_export_stage_voyageArray voyages;
+ ffcam_export_stage_responsableArray responsables;
+}
+    [34] => struct ffcam_export_stage_formation {
+ string id;
+ string exercice;
+ string activite;
+ string agrement;
+ string action;
+ string lieu;
+ string dateini;
+ string datefin;
+ string duree;
+ string remarquedate;
+ string professionom;
+ string professioprenom;
+ string responom;
+ string respoprenom;
+ string respoclub;
+ string respoid;
+ string respotypcontact1;
+ string respocontact1;
+ string respotypcontact2;
+ string respocontact2;
+ string benenom;
+ string beneprenom;
+ string beneclub;
+ string beneid;
+ string benetypcontact1;
+ string benecontact1;
+ string benecontact2;
+ string organisateur;
+ string ageminimum;
+ string prerequis;
+ string compterendu;
+ string datereception;
+ string datevalidation;
+ string hebergement;
+ string region;
+ string etat;
+ string commentaire;
+ string nom;
+ string b_image;
+ string b_transport;
+ string b_repas;
+ string b_hebergement;
+ string b_forfait;
+ string participant;
+ string partstagiaire;
+ string designation;
+ string sousactivite;
+ string f_cursus;
+ string f_inscription;
+ string nombre_inscrits;
+}
+    [35] => struct ffcam_export_stage_voyage {
+ string id;
+ string exercice;
+ string activite;
+ string action;
+ string lieu;
+ string intitule;
+ string presentation;
+ string dateini;
+ string datefin;
+ string duree;
+ string remarquedate;
+ string professionom;
+ string professioprenom;
+ string responom;
+ string respoprenom;
+ string respoclub;
+ string respoid;
+ string respotypcontact1;
+ string respocontact1;
+ string respotypcontact2;
+ string respocontact2;
+ string benenom;
+ string beneprenom;
+ string beneclub;
+ string beneid;
+ string benetypcontact1;
+ string benecontact1;
+ string benetypcontact2;
+ string benecontact2;
+ string organisateur;
+ string nbparticipant;
+ string pays;
+ string agecondition;
+ string niveau;
+ string materiel;
+ string daterdv;
+ string lieurdv;
+ string b_hebergement;
+ string b_repas;
+ string b_transport;
+ string b_forfait;
+ string b_image;
+ string bud_partstagiaire;
+ string programme;
+ string hebergement;
+}
+    [36] => struct ffcam_export_stage_responsable {
+ string id;
+ string qualite;
+ string nom;
+ string prenom;
+ string compnom;
+ string batiment;
+ string numrue;
+ string localite;
+ string codpost;
+ string ville;
+}
+    [37] => struct ffcam_export_stage_file {
+ string nom;
+ string contenu;
+}
+)
+</pre>

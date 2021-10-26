@@ -15,9 +15,9 @@ export const getClient = async (): Promise<Client> => {
 };
 
 type Auth = {
-  utilisateur: string
-  motdepasse: string
-}
+  utilisateur: string;
+  motdepasse: string;
+};
 export const getAuth = async (client: Client): Promise<Auth> => {
   return new Promise((resolve, reject) => {
     client.auth(null, (err: unknown, result: any) => {
@@ -34,11 +34,15 @@ export const getAuth = async (client: Client): Promise<Auth> => {
 };
 
 type User = {
-  id: string
-  lastname: string
-  firstname: string
-}
-export const getUsers = async (client: Client, auth: Auth, clubId: string): Promise<User[]> => {
+  id: string;
+  lastname: string;
+  firstname: string;
+};
+export const getUsers = async (
+  client: Client,
+  auth: Auth,
+  clubId: string
+): Promise<User[]> => {
   return new Promise((resolve, reject) => {
     client.extractionAdherents(
       { connect: auth, idclub: clubId },
@@ -52,23 +56,49 @@ export const getUsers = async (client: Client, auth: Auth, clubId: string): Prom
   });
 };
 
-const getValue = (input: {$value: string}): string => input.$value
+const getValue = (input: { $value: string }): string => input.$value;
 
-export const getUser = async (client: Client, auth: Auth, userId: string): Promise<User> => {
+export const getUser = async (
+  client: Client,
+  auth: Auth,
+  userId: string
+): Promise<User> => {
   return new Promise((resolve, reject) => {
     client.extractionAdherent(
       { connect: auth, id: userId },
       (err: any, result: any) => {
         if (err) {
-          console.log('get user error', err);
+          console.log("get user error", err);
           return reject(err);
         }
-        const user = result.extractionAdherentReturn
+        const user = result.extractionAdherentReturn;
         resolve({
           id: getValue(user.id),
           lastname: getValue(user.nom),
           firstname: getValue(user.prenom),
         });
+      }
+    );
+  });
+};
+
+type Club = {};
+
+export const getClub = async (
+  client: Client,
+  auth: Auth,
+  clubId: string
+): Promise<Club> => {
+  return new Promise((resolve, reject) => {
+    client.extractionClub(
+      { connect: auth, idclub: clubId },
+      (err: any, result: any) => {
+        if (err) {
+          console.log("get club error", err);
+          return reject(err);
+        }
+        const club = result.extractionClubReturn;
+        resolve(club);
       }
     );
   });
