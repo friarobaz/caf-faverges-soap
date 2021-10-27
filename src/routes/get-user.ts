@@ -40,5 +40,3 @@ export const handler: Handler = async (event, context) => {
   }
   //########################################################
 }
-
-exports.handler = async (event) => {}
