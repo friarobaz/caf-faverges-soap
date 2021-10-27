@@ -1,4 +1,3 @@
-console.log("penis");
 import { getClient, getAuth, getClub } from "../soap";
 import { Handler } from "@netlify/functions";
 import { isPasswordOk } from "../auth";

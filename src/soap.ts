@@ -33,11 +33,7 @@ export const getAuth = async (client: Client): Promise<Auth> => {
   });
 };
 
-type User = {
-  id: string;
-  lastname: string;
-  firstname: string;
-};
+type User = {};
 export const getUsers = async (
   client: Client,
   auth: Auth,
@@ -71,12 +67,13 @@ export const getUser = async (
           console.log("get user error", err);
           return reject(err);
         }
-        const user = result.extractionAdherentReturn;
-        resolve({
+        /* const user = result.extractionAdherentReturn;
+        {
           id: getValue(user.id),
           lastname: getValue(user.nom),
           firstname: getValue(user.prenom),
-        });
+        } */
+        resolve(result.extractionAdherentReturn);
       }
     );
   });
