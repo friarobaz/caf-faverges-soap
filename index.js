@@ -5,7 +5,8 @@ const getUser = async () => {
     `/.netlify/functions/get-user?password=${password}&id=742120190080`
   )
   const data = await response.json()
-  console.log(data.user)
+  const user = data.user
+  document.getElementById("test").innerHTML = user.nom.$value
 }
 
 const getUsers = async () => {
@@ -24,11 +25,12 @@ const getClub = async () => {
   console.log(data.club)
 }
 
-db.collection("users")
+getUser()
+/* db.collection("users")
   .add({ couleur: "rouge" })
   .then((docRef) => {
     console.log("Document written with ID: ", docRef.id)
   })
   .catch((error) => {
     console.error("Error adding document: ", error)
-  })
+  }) */
