@@ -1,39 +1,39 @@
-import * as soap from "soap";
+import * as soap from "soap"
 
 interface Client extends soap.Client {}
 
 export const getClient = async (): Promise<Client> => {
-  var url = "https://extranet-clubalpin.com/app/soap/extranet_pro.wsdl";
+  var url = "https://extranet-clubalpin.com/app/soap/extranet_pro.wsdl"
   return new Promise((resolve, reject) => {
     soap.createClient(url, (err, client) => {
       if (err) {
-        return reject(err);
+        return reject(err)
       }
-      resolve(client);
-    });
-  });
-};
+      resolve(client)
+    })
+  })
+}
 
 type Auth = {
-  utilisateur: string;
-  motdepasse: string;
-};
+  utilisateur: string
+  motdepasse: string
+}
 export const getAuth = async (client: Client): Promise<Auth> => {
   return new Promise((resolve, reject) => {
     client.auth(null, (err: unknown, result: any) => {
       if (err) {
-        return reject(err);
+        return reject(err)
       }
       resolve({
         ...result,
         utilisateur: process.env.SOAP_USER,
         motdepasse: process.env.SOAP_PASSWORD,
-      });
-    });
-  });
-};
+      })
+    })
+  })
+}
 
-type User = {};
+type User = {}
 export const getUsers = async (
   client: Client,
   auth: Auth,
@@ -44,15 +44,15 @@ export const getUsers = async (
       { connect: auth, idclub: clubId },
       (err: any, result: any) => {
         if (err) {
-          return reject(err);
+          return reject(err)
         }
-        resolve(result.extractionAdherentsReturn.collection.item);
+        resolve(result.extractionAdherentsReturn.collection.item)
       }
-    );
-  });
-};
+    )
+  })
+}
 
-const getValue = (input: { $value: string }): string => input.$value;
+const getValue = (input: { $value: string }): string => input.$value
 
 export const getUser = async (
   client: Client,
@@ -64,8 +64,8 @@ export const getUser = async (
       { connect: auth, id: userId },
       (err: any, result: any) => {
         if (err) {
-          console.log("get user error", err);
-          return reject(err);
+          console.log("get user error", err)
+          return reject(err)
         }
         /* const user = result.extractionAdherentReturn;
         {
@@ -73,13 +73,13 @@ export const getUser = async (
           lastname: getValue(user.nom),
           firstname: getValue(user.prenom),
         } */
-        resolve(result.extractionAdherentReturn);
+        resolve(result.extractionAdherentReturn)
       }
-    );
-  });
-};
+    )
+  })
+}
 
-type Club = {};
+type Club = {}
 
 export const getClub = async (
   client: Client,
@@ -91,12 +91,12 @@ export const getClub = async (
       { connect: auth, idclub: clubId },
       (err: any, result: any) => {
         if (err) {
-          console.log("get club error", err);
-          return reject(err);
+          console.log("get club error", err)
+          return reject(err)
         }
-        const club = result.extractionClubReturn;
-        resolve(club);
+        const club = result.extractionClubReturn
+        resolve(club)
       }
-    );
-  });
-};
+    )
+  })
+}
